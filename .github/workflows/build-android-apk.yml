@@ -24,13 +24,14 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Build APK
+      - name: Build APK with Verbose Log
         run: |
           cd wangwang_phone
           flutter pub get
-          flutter build apk --release --no-tree-shake-icons
+          flutter build apk --release --no-tree-shake-icons -v
 
       - name: Upload APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: WangWangPhone-Release-APK
