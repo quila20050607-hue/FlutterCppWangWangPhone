@@ -21,18 +21,14 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'master'
+          channel: 'stable'
           cache: true
-
-      - name: Install dependencies
-        run: |
-          cd wangwang_phone
-          flutter pub get
 
       - name: Build APK
         run: |
           cd wangwang_phone
-          flutter build apk --release
+          flutter pub get
+          flutter build apk --release --no-tree-shake-icons
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
